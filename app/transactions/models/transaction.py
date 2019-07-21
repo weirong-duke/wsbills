@@ -1,14 +1,24 @@
+import random
+
 from django.db import models
 from django.contrib.auth.models import User
 
-from app.words import generate_random_title
 from app.pools.models.pool import Pool
+
+from app.words import words
+
+def generate_random_title():
+    while True:
+        generated_string = ''.join([words[random.randrange(0, len(words))].capitalize() for i in range(0,5)])
+        if not(Pool.objects.filter(identifier=generated_string).exists()):
+            return generated_string
 
 class Transaction(models.Model):
     amount = models.FloatField()
-    pool =  models.ForeignKey(Pool, on_delete=models.CASCADE)
+    identifier = models.CharField(db_index=True, max_length=70, blank=True, null=True, default=generate_random_title, unique=True)
     notes = models.TextField(null=True, blank=True)
-    identifier = models.CharField(max_length=50, blank=True, null=True, default=generate_random_title, unique=True)
+    pool =  models.ForeignKey(Pool, on_delete=models.CASCADE)
+    title = models.CharField(max_length=70, blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):

@@ -1,6 +1,4 @@
-import random
-
-nouns = [
+words = [
     'people',
     'history',
     'way',
@@ -1526,6 +1524,3 @@ nouns = [
     'wrap',
     'yesterday',
 ]
-
-def generate_random_title():
-    return ''.join([nouns[random.randrange(0, len(nouns))].capitalize() for i in range(0,4)]);
