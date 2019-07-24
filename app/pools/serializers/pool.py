@@ -1,11 +1,16 @@
 from rest_framework import serializers
 
 from app.pools.models.pool import Pool
+from app.pools.serializers.pool_user import PoolUserListSerializer
 
-class PoolSerializer(serializers.ModelSerializer):
+class PoolListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Pool
         fields = '__all__'
 
-# class CollaborationListSerializer(serializers.ModelSerializer)
+class PoolDetailSerializer(serializers.ModelSerializer):
+    pool_users = PoolUserListSerializer(many=True)
+    class Meta:
+        model = Pool
+        fields = '__all__'

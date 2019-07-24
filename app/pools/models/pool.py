@@ -2,11 +2,11 @@ import random
 
 from django.db import models
 
-from app.words import words
+from app.words import generate_random_title_string
 
 def generate_random_title():
     while True:
-        generated_string = ''.join([words[random.randrange(0, len(words))].capitalize() for i in range(0,5)])
+        generated_string = generate_random_title_string()
         if not(Pool.objects.filter(identifier=generated_string).exists()):
             return generated_string
 
