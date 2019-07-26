@@ -3,9 +3,10 @@ from django.db.models import Q
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 
+from app.generic.models.date_properties import DateProperties
 from app.pools.models.pool import Pool
 
-class PoolUser(models.Model):
+class PoolUser(DateProperties):
     pool = models.ForeignKey(Pool, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     unverified_email = models.CharField(max_length=100, blank=True, null=True)

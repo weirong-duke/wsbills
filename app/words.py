@@ -2287,7 +2287,7 @@ adverbs = [
         "youthfully"
 ]
 
-def generate_random_title_string():
+def generate_random_identifier_string():
     generated_string = ''.join([adverbs[random.randrange(0, len(adverbs))].capitalize()] +
         [adjectives[random.randrange(0, len(adjectives))].capitalize() for i in range(0, 3)] +
         [nouns[random.randrange(0, len(nouns))].capitalize()])
