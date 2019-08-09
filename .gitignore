@@ -1,7 +1,6 @@
 # Base
 *.iml
 *.pyc
-*.sqlite3
 .DS_Store
 .idea
 
