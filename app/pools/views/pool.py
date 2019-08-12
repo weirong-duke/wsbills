@@ -15,6 +15,9 @@ class PoolView(APIView):
         description: List pools
         """
         print(request.user)
+        if request.user.is_anonymous:
+            return Response(data=[])
+
         pools = Pool.objects.filter(pool_users__user=request.user)
 
         return Response(PoolListSerializer(pools, many=True).data)
